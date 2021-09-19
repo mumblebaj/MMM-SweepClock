@@ -21,8 +21,8 @@ git clone https://github.com/mumblebaj/MMM-SweepClock.git
 Add the module to the modules array in the `config/config.js` file:
 ````javascript
   {
-			module: "MMM-SweepClock",
-			position: "top_left",
+	module: "MMM-SweepClock",
+	position: "top_left",
   },
 ````
 
