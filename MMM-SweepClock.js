@@ -51,11 +51,12 @@ Module.register("MMM-SweepClock", {
 
 
         suspend: function () {
-
+                this.suspend = true;
         },
 
         resume: function () {
-
+                this.suspend = false;
+                this.startClock();
         },
 
         firstMinute: function () {
