@@ -18,8 +18,10 @@ footer a {
 .demo-container {
    /* width: 70vw; */
     margin: 0;
-    padding: 0;
-    text-align: center;
+    padding-top: 0px; 
+    padding-left: 35px;
+    padding-bottom: 0px;
+    padding-right:  25px;
 }
 
 .demo-container.clocks.single .clock {
