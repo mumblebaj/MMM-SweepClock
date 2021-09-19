@@ -3,18 +3,6 @@ body {
     overflow: hidden;
 }
 
-footer {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    text-align: center;
-    margin-top: 5px;
-    color: gray;
-}
-
-footer a {
-    text-decoration: none;
-    color: #208ad2;
-}
-
 .demo-container {
    /* width: 70vw; */
     margin: 0;
