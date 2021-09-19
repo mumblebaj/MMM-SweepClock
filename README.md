@@ -31,7 +31,6 @@ Add the module to the modules array in the `config/config.js` file:
 To update the module to the latest version, use your terminal to go to your MMM-NewsAPI module folder and type the following command:
 
 ````
+cd ~/MagicMirror/modules/MMM-SweepClock/
 git pull
-cd MMM-NewsAPI
-npm install
 ```` 
