@@ -4,6 +4,11 @@ A [MagicMirror²](https://magicmirror.builders) module to display a clasic Railw
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
+## Support
+If you like my module you can support my work by giving me a star ir buy me a coffee.
+
+<a href="https://www.buymeacoffee.com/mumblebaj" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Beer" style="height: 45px !important;width: 180px !important;" ></a>
+
 ![Example](image.png) 
 
 ## Installation
