@@ -11,17 +11,20 @@ Module.register("MMM-SweepClock", {
 
         getDom: function () {
                 var wrapper = document.createElement("div");
+                wrapper.id = "sweep-clock";
+                wrapper.classList.add("sweep-clock");
+                wrapper.className = "sweep-clock";
                 wrapper.innerHTML = `
-                        <div class="demo-container clocks single">
-                        <article class="clock station show linear bounce">
+                        <div class="sweep-clock single">
+                        <article class="sweepclock station show linear bounce">
                         <div class="hours-container" id="hours-container">
-                            <div class="hours"></div>
+                            <div class="sweephours"></div>
                         </div>
                         <div class="minutes-container" id="minutes-container">
-                            <div class="minutes"></div>
+                            <div class="sweepminutes"></div>
                         </div>
                         <div class="seconds-container" id="seconds-container">
-                            <div class="seconds"></div>
+                            <div class="sweepseconds"></div>
                         </div>
                         </article>
                         </div>
@@ -64,12 +67,12 @@ Module.register("MMM-SweepClock", {
                 const timeAroundClock = 58500
                 const elapsed = dateNow.getSeconds() * 1000 + dateNow.getMilliseconds()
 
-                this.hour(dateNow.getHours(), dateNow.getMinutes())
+                this.sweephour(dateNow.getHours(), dateNow.getMinutes())
                 this.setMinute(dateNow.getMinutes())
                 if (elapsed >= timeAroundClock) {
                         this.finishedMinuteAnimation()
                 } else {
-                        this.second(elapsed / timeAroundClock, (timeAroundClock - elapsed) / timeAroundClock)
+                        this.sweepsecond(elapsed / timeAroundClock, (timeAroundClock - elapsed) / timeAroundClock)
                 }
         },
 
@@ -80,9 +83,9 @@ Module.register("MMM-SweepClock", {
                 if (newMinute === 0) {
                         newMinute = 60
                 }
-                this.second()
-                this.minute(initialMinute, newMinute)
-                this.hour(initialHour, newMinute)
+                this.sweepsecond()
+                this.sweepminute(initialMinute, newMinute)
+                this.sweephour(initialHour, newMinute)
         },
 
         nextMinute: function () {
@@ -95,7 +98,7 @@ Module.register("MMM-SweepClock", {
                 })
         },
 
-        hour: function (hour, minute) {
+        sweephour: function (hour, minute) {
                 const degreePerHour = 360 / 12
                 const degreePerHourInMinutes = degreePerHour / 60
                 const hourInDegree = (hour % 12) * degreePerHour
@@ -111,7 +114,7 @@ Module.register("MMM-SweepClock", {
                 minuteElement.style.opacity = 1
         },
 
-        minute: function (initialMinute, newMinute) {
+        sweepminute: function (initialMinute, newMinute) {
                 const degreePerMinute = 360 / 60
                 const minuteElement = document.querySelector('.minutes-container');
                 if (newMinute === 60) {
@@ -131,7 +134,7 @@ Module.register("MMM-SweepClock", {
                 }
         },
 
-        second: function (start = 0, iterations = 1) {
+        sweepsecond: function (start = 0, iterations = 1) {
                 const timeAroundClock = 58500
                 const secondsElement = document.querySelector('.seconds-container');
                 let animation = secondsElement.animate([
