@@ -47,7 +47,7 @@
     box-shadow: 0 0 1em rgba(0, 0, 0, 0.2) inset;
 }
 
-.sweepclock.station .seconds::before {
+.sweepclock.station .sweepseconds::before {
     background: red;
     border-radius: 100%;
     content: "";
