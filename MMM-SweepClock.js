@@ -6,7 +6,9 @@ Module.register("MMM-SweepClock", {
         },
 
         start: function () {
+                suspended = false;
                 Log.log(this.name + " is starting!");
+
         },
 
         getDom: function () {
@@ -54,11 +56,11 @@ Module.register("MMM-SweepClock", {
 
 
         suspend: function () {
-                this.suspend = true;
+                this.suspended = true;
         },
 
         resume: function () {
-                this.suspend = false;
+                this.suspended = false;
                 this.startClock();
         },
 
