@@ -3,10 +3,10 @@ Module.register("MMM-SweepClock", {
         config: null,
 
         defaults: {
+                suspended: false
         },
 
         start: function () {
-                suspended = false;
                 Log.log(this.name + " is starting!");
 
         },
