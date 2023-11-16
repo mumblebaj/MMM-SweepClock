@@ -3,7 +3,8 @@ Module.register("MMM-SweepClock", {
         config: null,
 
         defaults: {
-                suspended: false
+                suspended: false,
+                dateFormat: "dddd, LL"
         },
 
         start: function () {
@@ -31,6 +32,13 @@ Module.register("MMM-SweepClock", {
                         </article>
                         </div>
                         `;
+
+                const dateWrapper = document.createElement("div")
+
+                const now = moment();
+                dateWrapper.className = "date normal medium";
+                dateWrapper.innerHTML = now.format(this.config.dateFormat);
+                wrapper.appendChild(dateWrapper)
                 return wrapper;
         },
 

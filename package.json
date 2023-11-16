@@ -1,0 +1,20 @@
+{
+    "name": "mmm-growatt",
+    "version": "1.0.1",
+    "description": "MagicMirror² Module Station Sweep Clock",
+    "main": "MMM-SweepClock.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/mumblebaj/MMM-SweepClock.git"
+    },
+    "keywords": [
+      "MagicMirror",
+      "SweepClock Station Clock"
+    ],
+    "author": "mumblebaj",
+    "license": "ISC"
+  }
+  
