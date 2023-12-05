@@ -7,6 +7,12 @@ A [MagicMirror²](https://magicmirror.builders) module to display a clasic Railw
 ## Support
 If you like my module you can support my work by giving me a star ir buy me a coffee.
 
+## Updates
+### V1.1.0
+- Added option to remove date.
+- Added option provide Date Format
+- If Date is not required to keep the look and feel minimal just set showDate option to false.
+
 <a href="https://www.buymeacoffee.com/mumblebaj" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Beer" style="height: 45px !important;width: 180px !important;" ></a>
 
 ![Example](image.png) 
@@ -28,6 +34,10 @@ Add the module to the modules array in the `config/config.js` file:
   {
 	module: "MMM-SweepClock",
 	position: "top_left",
+    config: {
+              showDate: false,
+              dateFormat: "dddd, LLL"
+            }
   },
 ````
 

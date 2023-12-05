@@ -4,7 +4,12 @@ Module.register("MMM-SweepClock", {
 
         defaults: {
                 suspended: false,
+                showDate: false,
                 dateFormat: "dddd, LL"
+        },
+
+        getScripts: function() {
+                return ["moment.js", "moment-timezone.js"]
         },
 
         start: function () {
@@ -33,13 +38,16 @@ Module.register("MMM-SweepClock", {
                         </div>
                         `;
 
-                const dateWrapper = document.createElement("div")
+                if (this.config.showDate) {
+                        const dateWrapper = document.createElement("div")
 
-                const now = moment();
-                dateWrapper.className = "date normal medium";
-                dateWrapper.innerHTML = now.format(this.config.dateFormat);
-                wrapper.appendChild(dateWrapper)
-                return wrapper;
+                        const now = moment();
+                        dateWrapper.className = "date normal medium";
+                        dateWrapper.innerHTML = now.format(this.config.dateFormat);
+                        wrapper.appendChild(dateWrapper)
+                } 
+
+                 return wrapper;
         },
 
         notificationReceived: function (noti) {
