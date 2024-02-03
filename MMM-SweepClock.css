@@ -103,3 +103,8 @@
     -ms-transform-origin: 50% 71%;
     transform-origin: 50% 71%;
 }
+
+.sweepdate {
+    text-align: center;
+    padding-top: 20px;
+}
