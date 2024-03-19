@@ -42,7 +42,7 @@ Module.register("MMM-SweepClock", {
                         const dateWrapper = document.createElement("div")
 
                         const now = moment();
-                        dateWrapper.className = "date normal medium";
+                        dateWrapper.className = "sweepdate normal small";
                         dateWrapper.innerHTML = now.format(this.config.dateFormat);
                         wrapper.appendChild(dateWrapper)
                 }
