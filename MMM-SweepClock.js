@@ -40,11 +40,20 @@ Module.register("MMM-SweepClock", {
 
                 if (this.config.showDate) {
                         const dateWrapper = document.createElement("div")
+                        let now = "";
 
-                        const now = moment();
-                        dateWrapper.className = "sweepdate normal small";
-                        dateWrapper.innerHTML = now.format(this.config.dateFormat);
-                        wrapper.appendChild(dateWrapper)
+                        // Check if user provided a timezone string
+                        if (this.config.timezone) {
+                                now = moment().tz(this.config.timezone)
+                                dateWrapper.className = "sweepdate normal small";
+                                dateWrapper.innerHTML = now.format(this.config.dateFormat);
+                                wrapper.appendChild(dateWrapper)
+                        } else {
+                                now = moment()
+                                dateWrapper.className = "sweepdate normal small";
+                                dateWrapper.innerHTML = now.format(this.config.dateFormat);
+                                wrapper.appendChild(dateWrapper)
+                        }
                 }
 
                 return wrapper;
@@ -71,17 +80,32 @@ Module.register("MMM-SweepClock", {
         },
 
         firstMinute: function () {
-                const dateNow = new Date();
-                const timeAroundClock = 58500
-                const elapsed = dateNow.getSeconds() * 1000 + dateNow.getMilliseconds()
+                if (this.config.timezone) {
+                        const now = moment().tz(this.config.timezone);
+                        const timeAroundClock = 58500;
+                        const elapsed = now.seconds() * 1000 + now.milliseconds();
 
-                this.sweephour(dateNow.getHours(), dateNow.getMinutes())
-                this.setMinute(dateNow.getMinutes())
-                if (elapsed >= timeAroundClock) {
-                        this.finishedMinuteAnimation()
+                        this.sweephour(now.hours(), now.minutes());
+                        this.setMinute(now.minutes());
+                        if (elapsed >= timeAroundClock) {
+                                this.finishedMinuteAnimation();
+                        } else {
+                                this.sweepsecond(elapsed / timeAroundClock, (timeAroundClock - elapsed) / timeAroundClock)
+                        }
                 } else {
-                        this.sweepsecond(elapsed / timeAroundClock, (timeAroundClock - elapsed) / timeAroundClock)
+                        const dateNow = new Date();
+                        const timeAroundClock = 58500
+                        const elapsed = dateNow.getSeconds() * 1000 + dateNow.getMilliseconds()
+
+                        this.sweephour(dateNow.getHours(), dateNow.getMinutes())
+                        this.setMinute(dateNow.getMinutes())
+                        if (elapsed >= timeAroundClock) {
+                                this.finishedMinuteAnimation()
+                        } else {
+                                this.sweepsecond(elapsed / timeAroundClock, (timeAroundClock - elapsed) / timeAroundClock)
+                        }
                 }
+
         },
 
         finishedMinuteAnimation: async function () {
