@@ -18,7 +18,8 @@ If you like my module you can support my work by giving me a star ir buy me a co
 
 <a href="https://www.buymeacoffee.com/mumblebaj" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Beer" style="height: 45px !important;width: 180px !important;" ></a>
 
-![Example](image.png) 
+![Example](images/image-1.png) 
+![Example](images/image-2.png)
 
 ## Installation
 
