@@ -9,6 +9,10 @@ A [MagicMirror²](https://magicmirror.builders) module to display a clasic Railw
 If you like my module you can support my work by giving me a star ir buy me a coffee.
 
 ## Updates
+
+### v1.1.3
+- Update issue [Github Issue 6](https://github.com/mumblebaj/MMM-SweepClock/issues/6)
+
 ### v1.1.2
 - Added support for timezones. User can now specify a timezone as input. I.e. `America/New_York` or `Europe/Zurich`. If local date and time is required then leave the `timezone` option out of the config.
 ### V1.1.0

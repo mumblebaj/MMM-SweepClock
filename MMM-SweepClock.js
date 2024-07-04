@@ -39,21 +39,20 @@ Module.register("MMM-SweepClock", {
                         `;
 
                 if (this.config.showDate) {
-                        const dateWrapper = document.createElement("div")
-                        let now = "";
+                        const dateWrapper = document.createElement("div");
+                        dateWrapper.className = "sweepdate normal small";
+                        wrapper.appendChild(dateWrapper);
 
-                        // Check if user provided a timezone string
-                        if (this.config.timezone) {
-                                now = moment().tz(this.config.timezone)
-                                dateWrapper.className = "sweepdate normal small";
+                        const updateDate = () => {
+                                const now = this.config.timezone ? moment().tz(this.config.timezone) : moment();
                                 dateWrapper.innerHTML = now.format(this.config.dateFormat);
-                                wrapper.appendChild(dateWrapper)
-                        } else {
-                                now = moment()
-                                dateWrapper.className = "sweepdate normal small";
-                                dateWrapper.innerHTML = now.format(this.config.dateFormat);
-                                wrapper.appendChild(dateWrapper)
-                        }
+                        };
+
+                        // Initial call to display the date immediately
+                        updateDate();
+
+                        // Set interval to update the date every second
+                        setInterval(updateDate, 1000);
                 }
 
                 return wrapper;
@@ -109,25 +108,48 @@ Module.register("MMM-SweepClock", {
         },
 
         finishedMinuteAnimation: async function () {
-                const initialHour = new Date().getHours()
-                const initialMinute = new Date().getMinutes()
-                let newMinute = await this.nextMinute()
-                if (newMinute === 0) {
-                        newMinute = 60
+                let initialHour, initialMinute;
+
+                if (this.config.timezone) {
+                        const now = moment().tz(this.config.timezone);
+                        initialHour = now.hours();
+                        initialMinute = now.minutes();
+                } else {
+                        const now = new Date();
+                        initialHour = now.getHours();
+                        initialMinute = now.getMinutes();
                 }
-                this.sweepsecond()
-                this.sweepminute(initialMinute, newMinute)
-                this.sweephour(initialHour, newMinute)
+
+                let newMinute = await this.nextMinute();
+
+                if (newMinute === 0) {
+                        newMinute = 60;
+                }
+
+                this.sweepsecond();
+                this.sweepminute(initialMinute, newMinute);
+                this.sweephour(initialHour, newMinute);
         },
 
         nextMinute: function () {
                 return new Promise(resolve => {
-                        const now = new Date()
-                        const remainingMilliseconds = ((60 - now.getSeconds()) * 1000) + (1000 - now.getMilliseconds())
-                        setTimeout(() => {
-                                resolve(new Date().getMinutes())
-                        }, remainingMilliseconds)
-                })
+                        if (this.config.timezone) {
+                                const now = moment().tz(this.config.timezone);
+                                const remainingMilliseconds = ((60 - now.seconds()) * 1000) + (1000 - now.milliseconds());
+
+                                setTimeout(() => {
+                                        const nextMinuteTime = moment().tz(this.config.timezone).minutes();
+                                        resolve(nextMinuteTime);
+                                }, remainingMilliseconds);
+                        } else {
+                                const now = new Date();
+                                const remainingMilliseconds = ((60 - now.getSeconds()) * 1000) + (1000 - now.getMilliseconds());
+
+                                setTimeout(() => {
+                                        resolve(new Date().getMinutes());
+                                }, remainingMilliseconds);
+                        }
+                });
         },
 
         sweephour: function (hour, minute) {
