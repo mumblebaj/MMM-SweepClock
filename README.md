@@ -10,6 +10,9 @@ If you like my module you can support my work by giving me a star ir buy me a co
 
 ## Updates
 
+### v1.1.4
+- Add support for multiple instances as per [issue request #7](https://github.com/mumblebaj/MMM-SweepClock/issues/7)
+
 ### v1.1.3
 - Update issue [Github Issue 6](https://github.com/mumblebaj/MMM-SweepClock/issues/6)
 
@@ -24,6 +27,7 @@ If you like my module you can support my work by giving me a star ir buy me a co
 
 ![Example](images/image-1.png) 
 ![Example](images/image-2.png)
+![Example](images/image-3.png)
 
 ## Installation
 
